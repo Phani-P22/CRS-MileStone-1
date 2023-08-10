@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="style.css">
+	<meta charset="ISO-8859-1">
+	<title>Course register</title>
+</head>
+
+<body>
+	<h1 class="header">Register Course</h1>
+	<div class="formContainer">
+		<form action="addCourse" id="form" method="post">
+			<div class="list">
+				<table>
+					<tr>
+						<td>
+							<label class="label" for="courseName">Course Name</label>
+						</td>
+						<td>
+							<input class="input" type="text" name="courseName" placeholder=""><br> <br>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="label" for="courseFee">Course Fee</label>
+						</td>
+						<td>
+							<input class="input" type="text" name="fee" placeholder=""><br> <br>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="label" for="courseDuration">Course Duration</label>
+						</td>
+						<td>
+							<input class="input" type="text" name="durationInHrs" placeholder=""><br> <br>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="label" for="courseDescription">Course Description</label>
+						</td>
+						<td>
+							<input class="input" type="text" name="courseDescription" placeholder=""><br> <br>
+						</td>
+					</tr>
+				</table>
+				<div class="buttonHolder">
+					<input class="input" id="LoginButton" type="submit" value="Add Course">
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

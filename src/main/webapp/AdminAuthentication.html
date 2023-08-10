@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="style.css">
+	<meta charset="ISO-8859-1">
+	<title>Admin Login</title>
+</head>
+
+<body>
+	<h1 class="header">Admin Login</h1>
+	<div class="formContainer">
+		<form action="adminAuth" id="form" method="post">
+			<div class="list">
+				<table>
+					<tr>
+						<td>
+							<label class="label" for="userName">Name</label>
+						</td>
+						<td>
+							<input class="input" type="text" name="userName" placeholder="">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="label" for="password">Password</label>
+						</td>
+						<td>
+							<input class="input" type="password" name="password" placeholder="">
+						</td>
+					</tr>
+				</table>
+				<div class="buttonHolder">
+					<input class="input" id="LoginButton" type="submit" value="Login">
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
