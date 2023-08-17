@@ -4,13 +4,26 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<%
+session = request.getSession();
+String title = (String) session.getAttribute("title");
+String message = (String) session.getAttribute("message");
+String redirectLink = (String) session.getAttribute("redirectLink");
+
+session.removeAttribute("title");
+session.removeAttribute("message");
+session.removeAttribute("redirectLink");
+%>
+<title><%=title%></title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div align="center">
-		<h1>Something Went Wrong!</h1>
-
-		<a href="index.html">Click Here to Redirect</a>
+	<br>
+	<br>
+	<br>
+	<div class="formContainer">
+		<h1><%=message%></h1>
+		<br> <a href="<%=redirectLink%>">Click Here to Redirect</a>
 	</div>
 </body>
 </html>

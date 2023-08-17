@@ -15,27 +15,51 @@ import com.digit.javaTraining.CRS.model.Student;
 public class StudentChangeUserNameController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String oldUserName = req.getParameter("oldUserName");
-		String newUserName = req.getParameter("newUserName");
-		String password = req.getParameter("password");
+		HttpSession session = req.getSession();
 		
-		if (oldUserName.equals(newUserName)) {
-			// return
+		String oldUserName, newUserName, password;
+		
+		try {
+			oldUserName = req.getParameter("oldUserName");
+			newUserName = req.getParameter("newUserName");
+			password = req.getParameter("password");
+		} catch (Exception e) {
+			session.setAttribute("title", "Change UserName Failure!");
+			session.setAttribute("message", "Invalid Parameters");
+			session.setAttribute("redirectLink", "StudentHome.jsp");
+			resp.sendRedirect("Failure.jsp");
+			return;
 		}
 		
-		HttpSession curSession = req.getSession();
-		Student curStudent = (Student) curSession.getAttribute("curStudent");
-		
-		if (!curStudent.getUserName().equals(oldUserName)) {
-			// return
+		Student curStudent = (Student) session.getAttribute("curStudent");
+		if (curStudent == null) {
+			session.setAttribute("title", "Change UserName Failure!");
+			session.setAttribute("message", "Invalid Session! Login Again");
+			session.setAttribute("redirectLink", "index.html");
+			resp.sendRedirect("Failure.jsp");
+			return;
 		}
+		
+		if (oldUserName.equals(newUserName) || curStudent.getUserName().equals(newUserName)) {
+			session.setAttribute("title", "Change UserName Failure!");
+			session.setAttribute("message", "Old and New UserName is Same");
+			session.setAttribute("redirectLink", "StudentHome.jsp");
+			resp.sendRedirect("Failure.jsp");
+			return;
+		}
+
 		if (!curStudent.getPassword().equals(password)) {
-			// return;
+			session.setAttribute("title", "Change UserName Failure!");
+			session.setAttribute("message", "Invalid Credentials");
+			session.setAttribute("redirectLink", "StudentHome.jsp");
+			resp.sendRedirect("Failure.jsp");
+			return;
 		}
 		
 		Student.changeStudentUserName(curStudent, newUserName, password);
+		curStudent.setUserName(newUserName);
+		session.setAttribute("curStudent", curStudent);
 		
-		HttpSession session = req.getSession();
 		session.setAttribute("title", "Change UserName");
 		session.setAttribute("message", "UserName Updated Successfully!");
 		session.setAttribute("redirectLink", "StudentHome.jsp");

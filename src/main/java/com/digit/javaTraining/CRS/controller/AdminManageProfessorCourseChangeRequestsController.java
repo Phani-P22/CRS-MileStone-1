@@ -20,8 +20,6 @@ public class AdminManageProfessorCourseChangeRequestsController extends HttpServ
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		
-		System.out.println("Req Came");
-		
 		@SuppressWarnings("unchecked")
 		ArrayList<CourseChangeResponse> allRequests = (ArrayList<CourseChangeResponse>) session
 				.getAttribute("allPCCRequests");

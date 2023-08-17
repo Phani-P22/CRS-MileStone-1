@@ -25,7 +25,10 @@
 		// print all are reviewed!
 		session.removeAttribute("curIndex");
 		session.removeAttribute("allStudentsUnderProfessor");
-		response.sendRedirect("/CRS/ProfessorHome.jsp");
+		session.setAttribute("title", "Grade Students");
+		session.setAttribute("message", "All Students are Graded!");
+		session.setAttribute("redirectLink", "ProfessorHome.jsp");
+		response.sendRedirect("AppPrintMessage.jsp");
 		return;
 	}
 

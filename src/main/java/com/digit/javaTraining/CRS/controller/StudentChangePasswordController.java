@@ -15,24 +15,44 @@ import com.digit.javaTraining.CRS.model.Student;
 public class StudentChangePasswordController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String oldPassword = req.getParameter("oldPassword");
-		String newPassword = req.getParameter("newPassword");
-		String reEnteredNewPassword = req.getParameter("reEnterNewPassword");
+		HttpSession session = req.getSession();
 		
-		if (!newPassword.equals(reEnteredNewPassword)) {
-			// return
+		String oldPassword, newPassword, reEnteredNewPassword;
+		
+		try {
+			oldPassword = req.getParameter("oldPassword");
+			newPassword = req.getParameter("newPassword");
+			reEnteredNewPassword = req.getParameter("reEnterNewPassword");
+		} catch (Exception e) {
+			session.setAttribute("title", "Change UserName Failure!");
+			session.setAttribute("message", "Invalid Parameters");
+			session.setAttribute("redirectLink", "StudentHome.jsp");
+			resp.sendRedirect("Failure.jsp");
 			return;
 		}
 		
-		HttpSession curSession = req.getSession();
-		Student curStudent = (Student) curSession.getAttribute("curStudent");
 		
-		if (!curStudent.getPassword().equals(oldPassword)) {
-			// return;
+		Student curStudent = (Student) session.getAttribute("curStudent");
+		if (curStudent == null) {
+			session.setAttribute("title", "Change UserName Failure!");
+			session.setAttribute("message", "Invalid Session! Login Again");
+			session.setAttribute("redirectLink", "index.html");
+			resp.sendRedirect("Failure.jsp");
+			return;
+		}
+		
+		if ((!newPassword.equals(reEnteredNewPassword)) || !curStudent.getPassword().equals(oldPassword)) {
+			session.setAttribute("title", "Change Password Failure!");
+			session.setAttribute("message", "Invalid Credentials");
+			session.setAttribute("redirectLink", "StudentHome.jsp");
+			resp.sendRedirect("Failure.jsp");
+			return;
 		}
 		
 		Student.changeStudentPassword(curStudent, newPassword);
-		HttpSession session = req.getSession();
+		curStudent.setPassword(newPassword);
+		session.setAttribute("curStudent", curStudent);
+
 		session.setAttribute("title", "Change Password");
 		session.setAttribute("message", "Password Updated Successfully!");
 		session.setAttribute("redirectLink", "StudentHome.jsp");

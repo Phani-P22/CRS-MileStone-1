@@ -15,6 +15,7 @@
 	int courseID = curProfessor.getCourseID();
 
 	Professor.deleteProfessorFromProfessorApplicationsTable(curProfessor);
+	response.sendRedirect("index.html");
 	// print all details of course
 	%>
 

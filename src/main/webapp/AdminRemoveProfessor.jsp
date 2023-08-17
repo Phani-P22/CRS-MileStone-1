@@ -15,7 +15,7 @@
 			<table>
 				<tr>
 					<td><label class="label">Professor ID</label></td>
-					<td><input class="input" type="text" name="professorID"
+					<td><input class="input" type="number" name="professorID"
 						placeholder=""></td>
 				</tr>
 			</table>

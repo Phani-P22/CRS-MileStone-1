@@ -11,14 +11,14 @@
 
 	<%
 	session = request.getSession();
-	Professor curProfessor = (Professor) session.getAttribute("curProfessor");
-	int courseID = curProfessor.getCourseID();
+	Student curStudent = (Student) session.getAttribute("curStudent");
+	int courseID = curStudent.getCourseEnrolled();
 
 	Course curCourse = Course.getCourseFromCourseTableUsingID(courseID);
 	if (curCourse == null) {
 		session.setAttribute("title", "View Enrolled Course");
 		session.setAttribute("message", "Course is DeRegistered. Raise request to Admin!");
-		session.setAttribute("redirectLink", "ProfessorPendingHome.jsp");
+		session.setAttribute("redirectLink", "StudentHome.jsp");
 		response.sendRedirect("AppPrintMessage.jsp");
 		return;
 	}
@@ -26,7 +26,7 @@
 
 <body>
 
-	<h1>Teaching Course Details</h1>
+	<h1>Enrolled Course Details</h1>
 
 	<div id="messageContainer" class="formContainer">
 		<div class="list">
@@ -44,9 +44,12 @@
 			<h2 class="message">
 				Duration In Hours:
 				<%=curCourse.getDurationInHrs()%></h2>
+			<h2 class="message">
+				Fee:
+				<%=curCourse.getFee()%></h2>
 		</div>
 		<div class="buttonHolder">
-			<a id="LoginButton" href="ProfessorPendingHome.jsp"> Back</a>
+			<a id="LoginButton" href="StudentPendingHome.jsp"> Back</a>
 		</div>
 	</div>
 </body>

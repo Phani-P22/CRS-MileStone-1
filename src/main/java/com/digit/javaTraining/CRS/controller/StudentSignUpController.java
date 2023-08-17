@@ -15,22 +15,45 @@ import com.digit.javaTraining.CRS.model.Student;
 public class StudentSignUpController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String userName = req.getParameter("userName");
-		String password = req.getParameter("password");
-		String reEnterePassword = req.getParameter("reEnteredPassword");
+		HttpSession session = req.getSession();
 
-		if (!password.equals(reEnterePassword)) {
-			// return to failure
-			// return
+		String userName;
+		String password;
+		String reEnterePassword;
+		String name;
+		int age;
+		String city;
+		int courseID;
+		String gender;
+		String emailID;
+		String phoneNumber;
+
+		try {
+			userName = req.getParameter("userName");
+			password = req.getParameter("password");
+			reEnterePassword = req.getParameter("reEnteredPassword");
+			name = req.getParameter("name");
+			age = Integer.parseInt(req.getParameter("age"));
+			city = req.getParameter("city");
+			courseID = Integer.parseInt(req.getParameter("courseID"));
+			gender = req.getParameter("gender");
+			emailID = req.getParameter("emailID");
+			phoneNumber = req.getParameter("phoneNumber");
+		} catch (Exception e) {
+			session.setAttribute("title", "Student SignUp Failure!");
+			session.setAttribute("message", "Invalid Parameters");
+			session.setAttribute("redirectLink", "index.html");
+			resp.sendRedirect("Failure.jsp");
+			return;
 		}
 
-		String name = req.getParameter("name");
-		int age = Integer.parseInt(req.getParameter("age"));
-		String city = req.getParameter("city");
-		int courseID = Integer.parseInt(req.getParameter("courseID"));
-		String gender = req.getParameter("gender");
-		String emailID = req.getParameter("emailID");
-		String phoneNumber = req.getParameter("phoneNumber");
+		if (!password.equals(reEnterePassword)) {
+			session.setAttribute("title", "Student SignUp Failure!");
+			session.setAttribute("message", "Passwords Doesn't match");
+			session.setAttribute("redirectLink", "index.html");
+			resp.sendRedirect("Failure.jsp");
+			return;
+		}
 
 		Student curStudent = new Student();
 		curStudent.setStudentName(name);
@@ -42,17 +65,22 @@ public class StudentSignUpController extends HttpServlet {
 		curStudent.setPhoneNumber(phoneNumber);
 		curStudent.setUserName(userName);
 		curStudent.setPassword(password);
-		
+
 		boolean signUpStatus = Student.studentSignUp(curStudent);
 		if (signUpStatus) {
 			// success
-			HttpSession session = req.getSession();
-			session.setAttribute("title", "Student Apply");
-			session.setAttribute("message", "Application Received!<br> Kindly wait for Admin to Approve");
-			session.setAttribute("redirectLink", "StudentHome.jsp");
-			resp.sendRedirect("index.html");
+			session.setAttribute("title", "Student Application Success");
+			session.setAttribute("message",
+					"Application Received!<br> Kindly wait for Admin to Approve<br>SignIn to View Details");
+			session.setAttribute("redirectLink", "index.html");
+			resp.sendRedirect("AppPrintMessage.jsp");
 		} else {
 			// failure
+			session.setAttribute("title", "Student SignUp Failure!");
+			session.setAttribute("message", "Something Wrong!<br> Try Again Later");
+			session.setAttribute("redirectLink", "index.html");
+			resp.sendRedirect("Failure.jsp");
+			return;
 		}
 	}
 }

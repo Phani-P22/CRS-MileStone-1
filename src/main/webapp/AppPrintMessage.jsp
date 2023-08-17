@@ -16,6 +16,10 @@ String redirectLink = (String) session.getAttribute("redirectLink");
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+	<br>
+	<br>
+	<br>
 	<div id="messageContainer" class="formContainer">
 		<div class="list">
 			<h2 class="message"><%=message%></h2>

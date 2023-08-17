@@ -7,6 +7,7 @@ body {
 	font-family: Montserrat;
 	font-weight: 600;
 	text-align: center;
+	background-image: url("https://static.tumblr.com/bcbf0b78bc5299592586b895192c3eda/sza0yfa/EOjp5i8lw/tumblr_static_tumblr_static_d1unhgq4n74s0gk0c00kccgk0_focused_v3.jpg");
 }
 
 .topnav {
@@ -159,14 +160,29 @@ table {
 	font-size: 25px;
 }
 
+.blurBg {
+	opacity: 0.4;
+}
+
 .formContainer {
+	background-color: rgba(255, 255, 255, 0.4);
 	display: inline-block;
-	border: 2px solid rgb(0, 0, 0);
 	border-radius: 10px;
 	padding: 50px;
-	background-color: white;
-	color: black;
+	border-radius: 10px;
 	text-align: center;
+	position: relative;
+}
+.formContainer::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: inherit;
+	filter: blur(100px); /* Adjust the blur */
+	z-index: -1;
 }
 
 #messageContainer {
@@ -191,13 +207,13 @@ table {
 }
 
 #LoginButton:hover {
-	background-color: #F11A7B;
+	background-color: #FFBF00;
 }
 
 .input:hover,
 .input:focus,
 .input:active {
-	border: 2px solid #F11A7B;
+	border: 2px solid #FFBF00;
 }
 
 .label {
@@ -218,7 +234,7 @@ table {
 
 a {
 	text-decoration: none;
-	background-color: #F11A7B;
+	background-color: #FFBF00;
 	color: white;
 	border: none;
 }
@@ -228,17 +244,17 @@ a {
 }
 
 #operation {
-	background-color: #f7f7f7;
-	border: 1px solid #ccc;
-	border-radius: 8px;
-	height: 40px;
+	background-color: white;
+	border: 1px solid black;
+	height: 35px;
 	color: #333;
 	padding-right: 15px;
 	width: 200px;
 	outline: none;
 }
 
-#operation:hover, #operation:focus {
+#operation:hover,
+#operation:focus {
 	border-color: #aaa;
 }
 

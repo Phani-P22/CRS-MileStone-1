@@ -17,6 +17,7 @@ public class AdminManageStudentSignUpRequestController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
+		@SuppressWarnings("unchecked")
 		ArrayList<Student> allRequests = (ArrayList<Student>) session.getAttribute("allRequests");
 		int curIndex = (int) session.getAttribute("curIndex");
 
@@ -24,14 +25,10 @@ public class AdminManageStudentSignUpRequestController extends HttpServlet {
 
 		String operation = req.getParameter("operation");
 		if (operation.equalsIgnoreCase("Approve")) {
-
 			Student.deleteStudentFromStudentRequestsTable(curStudent);
 			Student.addStudentToStudentTable(curStudent);
-
 		} else if (operation.equalsIgnoreCase("Reject")) {
-
 			Student.deleteStudentFromStudentRequestsTable(curStudent);
-
 		}
 		resp.sendRedirect("/CRS/AdminViewStudentEnrollmentRequests.jsp");
 	}

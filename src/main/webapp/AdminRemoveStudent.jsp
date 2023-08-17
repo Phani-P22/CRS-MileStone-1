@@ -16,7 +16,7 @@
 			<table>
 				<tr>
 					<td><label class="label">Student ID</label></td>
-					<td><input class="input" type="text" name="studentID"
+					<td><input class="input" type="number" name="studentID"
 						placeholder="" required></td>
 				</tr>
 			</table>

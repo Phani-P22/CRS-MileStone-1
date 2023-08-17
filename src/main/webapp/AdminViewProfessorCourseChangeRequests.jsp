@@ -28,6 +28,15 @@
 	}
 	CourseChangeResponse curCourseChangeRequest = allRequests.get(curIndex);
 	Professor curProfessor = (Professor) curCourseChangeRequest.getCurObject();
+	if (curProfessor == null) {
+		session.removeAttribute("curIndex");
+		session.removeAttribute("allPCCRequests");
+		session.setAttribute("title", "Operation Failure!");
+		session.setAttribute("message", "Something Went Wrong!");
+		session.setAttribute("redirectLink", "index.html");
+		response.sendRedirect("Failure.jsp");
+		return;
+	}
 	int newCourseID = curCourseChangeRequest.getNewCourseID();
 
 	curIndex++;

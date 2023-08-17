@@ -25,28 +25,28 @@
 
 					<tr>
 
-						<td class="td"><a class="LinkButton" href="AdminAddCourse.html">Register New
-								Course</a></td>
-						<td class="td"><a class="LinkButton" href="AdminRemoveCourse.jsp">DeRegister
-								Course</a></td>
+						<td class="td"><a class="LinkButton"
+							href="AdminAddCourse.html">Register New Course</a></td>
+						<td class="td"><a class="LinkButton"
+							href="AdminRemoveCourse.jsp">DeRegister Course</a></td>
 
 					</tr>
 
 					<tr>
 
-						<td class="td"><a class="LinkButton" href="AdminRemoveStudent.jsp">Remove
-								Student</a></td>
-						<td class="td"><a class="LinkButton" href="AdminViewAllStudents.jsp">View
-								All Students</a></td>
+						<td class="td"><a class="LinkButton"
+							href="AdminRemoveStudent.jsp">Remove Student</a></td>
+						<td class="td"><a class="LinkButton"
+							href="AdminViewAllStudents.jsp">View All Students</a></td>
 
 					</tr>
 
 					<tr>
 
-						<td class="td"><a class="LinkButton" href="AdminRemoveProfessor.jsp">Remove
-								Professor</a></td>
-						<td class="td"><a class="LinkButton" href="AdminViewAllProfessors.jsp">View
-								All Professors</a></td>
+						<td class="td"><a class="LinkButton"
+							href="AdminRemoveProfessor.jsp">Remove Professor</a></td>
+						<td class="td"><a class="LinkButton"
+							href="AdminViewAllProfessors.jsp">View All Professors</a></td>
 
 					</tr>
 
@@ -62,10 +62,11 @@
 					</tr>
 
 					<tr>
-						<td class="td"><a class="LinkButton" href="AdminDeRegisterStudentGrades.jsp">DeRegister
-								Student Grades</a></td>
-						<td class="td"><a class="LinkButton" href="AdminViewAllCourses.jsp">View All
-								Courses</a></td>
+						<td class="td"><a class="LinkButton"
+							href="AdminDeRegisterStudentGrades.jsp">DeRegister Student
+								Grades</a></td>
+						<td class="td"><a class="LinkButton"
+							href="AdminViewAllCourses.jsp">View All Courses</a></td>
 					</tr>
 
 				</table>

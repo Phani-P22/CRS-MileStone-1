@@ -18,7 +18,7 @@
 		session.setAttribute("allSCCRequests", allRequests);
 	}
 	ArrayList<CourseChangeResponse> allRequests = (ArrayList<CourseChangeResponse>) session.getAttribute("allSCCRequests");
-
+	
 	if (curIndex >= allRequests.size()) {
 		// print all are reviewed!
 		session.removeAttribute("curIndex");
@@ -28,6 +28,16 @@
 	}
 	CourseChangeResponse curCourseChangeRequest = allRequests.get(curIndex);
 	Student curStudent = (Student) curCourseChangeRequest.getCurObject();
+	if (curStudent == null) {
+		session.removeAttribute("curIndex");
+		session.removeAttribute("allSCCRequests");
+		
+		session.setAttribute("title", "Operation Failure!");
+		session.setAttribute("message", "Something Went Wrong!");
+		session.setAttribute("redirectLink", "index.html");
+		response.sendRedirect("Failure.jsp");
+		return;
+	}
 	int newCourseID = curCourseChangeRequest.getNewCourseID();
 
 	curIndex++;

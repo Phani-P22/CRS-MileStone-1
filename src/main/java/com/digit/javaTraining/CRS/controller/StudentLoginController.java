@@ -15,32 +15,39 @@ import com.digit.javaTraining.CRS.model.Student;
 public class StudentLoginController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String userName = req.getParameter("userName");
-		String password = req.getParameter("password");
+		HttpSession session = req.getSession();
+		String userName, password;
+		try {
+			userName = req.getParameter("userName");
+			password = req.getParameter("password");
+		} catch (Exception e) {
+			session.setAttribute("title", "Student LogIn Failure!");
+			session.setAttribute("message", "Invalid Parameters");
+			session.setAttribute("redirectLink", "index.html");
+			resp.sendRedirect("Failure.jsp");
+			return;
+		}
 
 		Student curStudent = Student.authenticateStudent(userName, password);
 		if (curStudent != null) {
-			// return to specific home
-//			return;
-			HttpSession session = req.getSession(true);
-			session.setAttribute("curStudent", curStudent);
-
+			HttpSession newSession = req.getSession(true);
+			newSession.setAttribute("curStudent", curStudent);
 			resp.sendRedirect("/CRS/StudentHome.jsp");
 			return;
 		}
 
 		curStudent = Student.authenticateStudentInRequestsTable(userName, password);
 		if (curStudent != null) {
-			// return to specific home
-			HttpSession session = req.getSession(true);
-			session.setAttribute("curStudent", curStudent);
-
+			HttpSession newSession = req.getSession(true);
+			newSession.setAttribute("curStudent", curStudent);
 			resp.sendRedirect("/CRS/StudentPendingHome.jsp");
 			return;
-//			return;
 		}
 
-		// error jsp
-		resp.sendRedirect("/CRS/Failure.jsp");
+		session.setAttribute("title", "Student LogIn Failure!");
+		session.setAttribute("message", "Invalid Credentials");
+		session.setAttribute("redirectLink", "index.html");
+		resp.sendRedirect("Failure.jsp");
+		return;
 	}
 }

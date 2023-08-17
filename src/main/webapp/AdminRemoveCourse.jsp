@@ -18,7 +18,7 @@
 						<label class="label">Course ID</label>
 					</td>
 					<td>
-						<input class="input" type="text" name="courseID" placeholder="">
+						<input class="input" type="number" name="courseID" placeholder="">
 					</td>
 				</tr>
 			</table>

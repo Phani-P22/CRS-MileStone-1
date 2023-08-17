@@ -15,6 +15,7 @@
 	int courseID = curStudent.getCourseEnrolled();
 	
 	Student.withDrawStudentSignUpRequest(curStudent);
+	response.sendRedirect("index.html");
 	// print all details of course
 	%>
 

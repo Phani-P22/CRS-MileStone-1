@@ -13,16 +13,36 @@ import javax.servlet.http.HttpSession;
 import com.digit.javaTraining.CRS.model.Professor;
 import com.digit.javaTraining.CRS.model.Student;
 
-@SuppressWarnings("serial")
 @WebServlet("/gradeStudents")
 public class ProfessorGradeStudents extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int allotedMarks = Integer.parseInt(req.getParameter("marksGiven"));
-
 		HttpSession session = req.getSession();
-		Professor curProfessor = (Professor) session.getAttribute("curProfessor");
 
+		int allotedMarks;
+
+		try {
+			allotedMarks = Integer.parseInt(req.getParameter("marksGiven"));
+		} catch (Exception e) {
+			session.setAttribute("title", "Add Course Failure!");
+			session.setAttribute("message", "Invalid Parameters");
+			session.setAttribute("redirectLink", "AdminHome.jsp");
+			resp.sendRedirect("Failure.jsp");
+			return;
+		}
+
+		Professor curProfessor = (Professor) session.getAttribute("curProfessor");
+		if (curProfessor == null) {
+			session.removeAttribute("curIndex");
+			session.removeAttribute("allStudentsUnderProfessor");
+			session.setAttribute("title", "Grade Students Failure!");
+			session.setAttribute("message", "Invalid Session! Login Again");
+			session.setAttribute("redirectLink", "index.html");
+			resp.sendRedirect("Failure.jsp");
+			return;
+		}
+
+		@SuppressWarnings("unchecked")
 		ArrayList<Student> allStudentsUnderProfessor = (ArrayList<Student>) session
 				.getAttribute("allStudentsUnderProfessor");
 

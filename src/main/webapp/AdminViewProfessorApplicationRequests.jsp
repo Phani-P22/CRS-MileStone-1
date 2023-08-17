@@ -65,7 +65,8 @@
 				<option value="Approve">Approve Request</option>
 				<option value="Reject">Reject Request</option>
 				<option value="Skip">Skip Request</option>
-			</select> <input type="submit">
+			</select><br><br>
+			<input id="LoginButton" type="submit">
 		</form>
 	</div>
 

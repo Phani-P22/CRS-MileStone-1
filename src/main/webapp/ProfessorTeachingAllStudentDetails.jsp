@@ -14,6 +14,12 @@
 	session = request.getSession();
 	Professor curProfessor = (Professor) session.getAttribute("curProfessor");
 	ArrayList<Student> allStudents = Professor.getAllStudentsUnderProfessor(curProfessor);
+	if (allStudents.size() == 0) {
+		session.setAttribute("title", "View All Students!");
+		session.setAttribute("message", "Students are Yet to Enroll");
+		session.setAttribute("redirectLink", "ProfessorHome.jsp");
+		response.sendRedirect("AppPrintMessage.jsp");
+	}
 	%>
 
 	<h1 class="header">Course List</h1>

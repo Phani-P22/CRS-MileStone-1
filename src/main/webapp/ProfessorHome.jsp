@@ -19,10 +19,10 @@
 			<div class="list">
 				<table>
 					<tr>
-						<td class="td"><a class="LinkButton" href="ProfessorGradeStudents.jsp">Grade
-								Students</a></td>
-						<td class="td"><a class="LinkButton" href="ProfessorViewDetails.jsp">View
-								Details</a></td>
+						<td class="td"><a class="LinkButton"
+							href="ProfessorGradeStudents.jsp">Grade Students</a></td>
+						<td class="td"><a class="LinkButton"
+							href="ProfessorViewDetails.jsp">View Details</a></td>
 					</tr>
 
 					<tr>
@@ -38,26 +38,23 @@
 
 					<tr>
 
-						<td class="td"><a class="LinkButton" href="ProfessorCourseChangeApply.jsp">Change
-								Course You Teach</a></td>
-						<td class="td"><a class="LinkButton" href="">Change Personal Details</a></td>
+						<td class="td"><a class="LinkButton"
+							href="ProfessorChangeUserName.jsp">Change UserName</a></td>
+						<td class="td"><a class="LinkButton"
+							href="ProfessorChangePassword.jsp">Change Password</a></td>
 
 					</tr>
 
 					<tr>
 
-						<td class="td"><a class="LinkButton" href="ProfessorChangeUserName.jsp">Change
-								UserName</a></td>
-						<td class="td"><a class="LinkButton" href="ProfessorChangePassword.jsp">Change
-								Password</a></td>
+						<td class="td"><a class="LinkButton"
+							href="ProfessorCourseChangeApply.jsp">Change Course You Teach</a></td>
+						<td class="td"><a class="LinkButton" class="LinkButton"
+							id="professorLogOut" href="professorLogOut">Logout</a></td>
 
 					</tr>
 
 				</table>
-				<br>
-				<div class="buttonHolder">
-					<a class="LinkButton" class="LinkButton" id="professorLogOut" href="professorLogOut">Logout</a>
-				</div>
 			</div>
 		</form>
 	</div>

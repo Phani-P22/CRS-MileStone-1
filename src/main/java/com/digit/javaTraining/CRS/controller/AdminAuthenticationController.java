@@ -15,15 +15,30 @@ import com.digit.javaTraining.CRS.model.Admin;
 public class AdminAuthenticationController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String userName = req.getParameter("userName");
-		String password = req.getParameter("password");
-				
-		boolean isAdminAuthenticated = Admin.authAdminFromTable(userName, password);
-		if (isAdminAuthenticated) {			
-			resp.sendRedirect("/CRS/AdminHome.jsp");
-		} else {
-			// error msg and return to index.html
-			resp.sendRedirect("/CRS/Failure.jsp");
+		HttpSession session = req.getSession();
+
+		String userName, password;
+		try {
+			userName = req.getParameter("userName");
+			password = req.getParameter("password");
+		} catch (Exception e) {
+			session.setAttribute("title", "Authentication Failure!");
+			session.setAttribute("message", "Invalid Parameters");
+			session.setAttribute("redirectLink", "index.html");
+			resp.sendRedirect("Failure.jsp");
+			return;
 		}
+		
+
+		boolean isAdminAuthenticated = Admin.authAdminFromTable(userName, password);
+		if (isAdminAuthenticated) {
+			resp.sendRedirect("/CRS/AdminHome.jsp");
+			return;
+		}
+		
+		session.setAttribute("title", "Authentication Failure!");
+		session.setAttribute("message", "Invalid Credentials");
+		session.setAttribute("redirectLink", "index.html");
+		resp.sendRedirect("Failure.jsp");
 	}
 }

@@ -33,7 +33,7 @@
 	%>
 
 
-	<h1>Current Professor Request</h1>
+	<h1>Current Professor Request</h1><br>
 
 	<div id="messageContainer" class="formContainer">
 		<div class="list">
@@ -65,13 +65,16 @@
 				<%=curStudent.getPhoneNumber()%></h2>
 		</div>
 
+		<br>
+		<br>
 		<h3>Manage Request</h3>
 		<form action="manageStudentSignUpReq" method="post">
 			<select id="operation" name="operation">
 				<option value="Approve">Approve Request</option>
 				<option value="Reject">Reject Request</option>
 				<option value="Skip">Skip Request</option>
-			</select> <input type="submit">
+			</select> <br>
+			<br> <input type="submit" class="LoginButton">
 		</form>
 	</div>
 

@@ -272,13 +272,12 @@ public class Student {
 
 	public static void addStudentCourseChangeRequestToCourseChangeRequestsTable(Student curStudent, int newCourseID) {
 		Connection conn = Helper.getConnectionInstance();
-		String query = "INSERT INTO STUDENT_COURSE_CHANGE_REQUESTS VALUES (?, ?, ?)";
+		String query = "INSERT INTO STUDENT_COURSE_CHANGE_REQUESTS VALUES (?, ?)";
 
 		try {
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, curStudent.getUserName());
-			ps.setInt(2, curStudent.getStudentID());
-			ps.setInt(3, newCourseID);
+			ps.setInt(1, curStudent.getStudentID());
+			ps.setInt(2, newCourseID);
 
 			ps.executeUpdate();
 
@@ -408,9 +407,14 @@ public class Student {
 				ccr.setNewCourseID(newCourseID);
 
 				Student curStudent = getStudentFromStudentTableUsingID(studentID);
+				if (curStudent == null) {
+					continue;
+				}
 				ccr.setCurObject(curStudent);
 
 				allRequests.add(ccr);
+				
+				System.out.println(curStudent.getStudentName());
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
